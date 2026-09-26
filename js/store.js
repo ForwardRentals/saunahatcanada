@@ -8,12 +8,12 @@ const CHECKOUT_URL = ""; // e.g. https://saunahatcanada-checkout.<account>.worke
 const XMAS_OPEN = false; // flip to true in December (and XMAS_OPEN in wrangler.toml)
 
 const PRODUCTS = {
-  bucket: { name: "Bucket Sauna Hat", price: 2999, img: "img/bucket-sauna-hat-1.png" },
-  belltop: { name: "Belltop 100% Wool Sauna Hat", price: 2299, img: "img/belltop-100-wool-sauna-hat-1.png" },
-  merino: { name: "100% Merino Wool Sauna Hat", price: 3999, img: "img/100-merino-wool-sauna-hats-1.png" },
-  xmas: { name: "Free Christmas Hat (Grey Bucket)", price: 2999, img: "img/bucket-sauna-hat-1.png", xmas: true },
+  bucket: { name: "Bucket Sauna Hat", price: 2999, shipping: 1999, img: "img/bucket-sauna-hat-1.png" },
+  belltop: { name: "Belltop 100% Wool Sauna Hat", price: 2299, shipping: 1999, img: "img/belltop-100-wool-sauna-hat-1.png" },
+  merino: { name: "100% Merino Wool Sauna Hat", price: 3999, shipping: 1999, img: "img/100-merino-wool-sauna-hats-1.png" },
+  xmas: { name: "Free Christmas Hat (Grey Bucket)", price: 2999, shipping: 1999, img: "img/bucket-sauna-hat-1.png", xmas: true },
 };
-const SHIP = { xmasPerHat: 1999, xmasMax: 5, regular: 1299, freeOver: 7500 };
+const SHIP = { xmasMax: 5, freeOver: 7500 }; // free hats always pay their shipping
 
 const ORDER_EMAIL = "saunahatscanada@gmail.com";
 const CART_KEY = "shc_cart";
@@ -72,12 +72,20 @@ function addXmas() {
 /* ---------- cart drawer ---------- */
 function estimate(cart) {
   let regular = 0;
+  let regularShip = 0;
   let xmas = 0;
+  let xmasShip = 0;
   for (const l of cart) {
-    if (PRODUCTS[l.id].xmas) xmas += l.qty;
-    else regular += PRODUCTS[l.id].price * l.qty;
+    const p = PRODUCTS[l.id];
+    if (p.xmas) {
+      xmas += l.qty;
+      xmasShip += p.shipping * l.qty;
+    } else {
+      regular += p.price * l.qty;
+      regularShip += p.shipping * l.qty;
+    }
   }
-  const ship = xmas * SHIP.xmasPerHat + (regular && regular < SHIP.freeOver ? SHIP.regular : 0);
+  const ship = xmasShip + (regular >= SHIP.freeOver ? 0 : regularShip);
   return { regular, xmas, ship };
 }
 
@@ -138,7 +146,7 @@ function renderCart() {
         <img src="${p.img}" alt="">
         <div>
           <div class="cl-name">${p.name}</div>
-          <div class="cl-meta">${p.xmas ? "Grey" : l.color} · ${unit}</div>
+          <div class="cl-meta">${p.xmas ? "Grey" : l.color} · ${unit} + ${money(p.shipping)} shipping</div>
           <div class="cl-qty">
             <button data-act="dec" data-i="${i}" aria-label="Fewer">−</button><span>${l.qty}</span><button data-act="inc" data-i="${i}" aria-label="More">+</button>
             <button class="cl-rm" data-act="rm" data-i="${i}">Remove</button>
@@ -153,8 +161,8 @@ function renderCart() {
     <div class="cart-row"><span>Hats</span><span>${money(e.regular)}${e.xmas ? ` + ${e.xmas} free` : ""}</span></div>
     <div class="cart-row"><span>Shipping</span><span>${e.ship ? money(e.ship) : "Free"}</span></div>
     <div class="cart-row total"><span>Total</span><span>${money(e.regular + e.ship)} CAD</span></div>
-    ${e.xmas ? '<p class="cart-note">*Enter your free-hat code at checkout. Each free hat ships separately ($19.99 each).</p>' : ""}
-    ${e.regular && e.regular < SHIP.freeOver ? `<p class="cart-note">Add ${money(SHIP.freeOver - e.regular)} more for free shipping on regular hats.</p>` : ""}
+    ${e.xmas ? '<p class="cart-note">*Enter your free-hat code at checkout. Free hats always pay their own shipping ($19.99 each).</p>' : ""}
+    ${e.regular && e.regular < SHIP.freeOver ? `<p class="cart-note">Add ${money(SHIP.freeOver - e.regular)} more for free shipping.</p>` : ""}
     <p class="cart-note">Taxes calculated at checkout.</p>
     <button class="btn cart-checkout" data-act="checkout">Checkout</button>`;
 }

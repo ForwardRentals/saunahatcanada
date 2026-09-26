@@ -305,3 +305,4 @@ footer a:hover { color: var(--wood); }
 .xmas-claim { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 18px; }
 .xmas-claim select { padding: 12px 16px; border-radius: 999px; border: none; font: 600 .95rem var(--font-body); }
 @media (max-width: 860px) { .cart-btn { margin-left: auto; margin-right: 12px; } }
+.ship-note { font-size: .78rem; color: var(--char-soft); margin: -4px 0 12px; }
