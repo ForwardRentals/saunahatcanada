@@ -13,7 +13,7 @@ const PRODUCTS = {
   merino: { name: "100% Merino Wool Sauna Hat", price: 3999, img: "img/100-merino-wool-sauna-hats-1.png" },
   xmas: { name: "Free Christmas Hat (Grey Bucket)", price: 2999, img: "img/bucket-sauna-hat-1.png", xmas: true },
 };
-const SHIP = { xmasPerHat: 2299, xmasMax: 5, regular: 1299, freeOver: 7500 };
+const SHIP = { xmasPerHat: 1999, xmasMax: 5, regular: 1299, freeOver: 7500 };
 
 const ORDER_EMAIL = "saunahatscanada@gmail.com";
 const CART_KEY = "shc_cart";
@@ -153,7 +153,7 @@ function renderCart() {
     <div class="cart-row"><span>Hats</span><span>${money(e.regular)}${e.xmas ? ` + ${e.xmas} free` : ""}</span></div>
     <div class="cart-row"><span>Shipping</span><span>${e.ship ? money(e.ship) : "Free"}</span></div>
     <div class="cart-row total"><span>Total</span><span>${money(e.regular + e.ship)} CAD</span></div>
-    ${e.xmas ? '<p class="cart-note">*Enter your free-hat code at checkout. Each free hat ships separately ($22.99 each).</p>' : ""}
+    ${e.xmas ? '<p class="cart-note">*Enter your free-hat code at checkout. Each free hat ships separately ($19.99 each).</p>' : ""}
     ${e.regular && e.regular < SHIP.freeOver ? `<p class="cart-note">Add ${money(SHIP.freeOver - e.regular)} more for free shipping on regular hats.</p>` : ""}
     <p class="cart-note">Taxes calculated at checkout.</p>
     <button class="btn cart-checkout" data-act="checkout">Checkout</button>`;
