@@ -4,14 +4,13 @@
    returns a Stripe Checkout URL. Until CHECKOUT_URL is set, checkout falls back
    to an email order. Prices here are for display only. */
 
-const CHECKOUT_URL = ""; // e.g. https://saunahatcanada-checkout.<account>.workers.dev/checkout
-const XMAS_OPEN = false; // flip to true in December (and XMAS_OPEN in wrangler.toml)
+const CHECKOUT_URL = "https://saunahatcanada-checkout.thefulltimehobby.workers.dev/checkout";
 
 const PRODUCTS = {
   bucket: { name: "Bucket Sauna Hat", price: 2999, shipping: 1999, img: "img/bucket-sauna-hat-1.png" },
   belltop: { name: "Belltop 100% Wool Sauna Hat", price: 2299, shipping: 1999, img: "img/belltop-100-wool-sauna-hat-1.png" },
   merino: { name: "100% Merino Wool Sauna Hat", price: 3999, shipping: 1999, img: "img/100-merino-wool-sauna-hats-1.png" },
-  xmas: { name: "Free Christmas Hat (Grey Bucket)", price: 2999, shipping: 1999, img: "img/bucket-sauna-hat-1.png", xmas: true },
+  xmas: { name: "FREE Christmas Hat (Grey Bucket)", price: 0, shipping: 1999, img: "img/bucket-sauna-hat-1.png", xmas: true },
 };
 const SHIP = { xmasMax: 5, freeOver: 7500 }; // free hats always pay their shipping
 
@@ -64,8 +63,8 @@ function buy(id) {
   addToCart(id, colorEl ? colorEl.textContent : "Grey");
 }
 
-function addXmas() {
-  const sel = document.getElementById("xmas-qty");
+function addXmas(btn) {
+  const sel = btn && btn.closest(".xmas-claim").querySelector("select");
   addToCart("xmas", "Grey", sel ? Number(sel.value) : 1);
 }
 
@@ -161,7 +160,7 @@ function renderCart() {
     <div class="cart-row"><span>Hats</span><span>${money(e.regular)}${e.xmas ? ` + ${e.xmas} free` : ""}</span></div>
     <div class="cart-row"><span>Shipping</span><span>${e.ship ? money(e.ship) : "Free"}</span></div>
     <div class="cart-row total"><span>Total</span><span>${money(e.regular + e.ship)} CAD</span></div>
-    ${e.xmas ? '<p class="cart-note">*Enter your free-hat code at checkout. Free hats always pay their own shipping ($19.99 each).</p>' : ""}
+    ${e.xmas ? '<p class="cart-note">*Free hats ship the first week of December and pay their own shipping ($19.99 each).</p>' : ""}
     ${e.regular && e.regular < SHIP.freeOver ? `<p class="cart-note">Add ${money(SHIP.freeOver - e.regular)} more for free shipping.</p>` : ""}
     <p class="cart-note">Taxes calculated at checkout.</p>
     <button class="btn cart-checkout" data-act="checkout">Checkout</button>`;
@@ -235,7 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
     openCart("Checkout cancelled — your cart is still here.");
   }
   if (document.body.dataset.clearCart !== undefined) saveCart([]);
-  if (XMAS_OPEN) document.querySelectorAll("[data-xmas-open]").forEach((el) => (el.hidden = false));
 
   // Mobile nav
   const burger = document.querySelector(".hamburger");
