@@ -162,7 +162,7 @@ function renderCart() {
     <div class="cart-row total"><span>Total</span><span>${money(e.regular + e.ship)} CAD</span></div>
     ${e.xmas ? '<p class="cart-note">*Free hats ship the first week of December and pay their own shipping ($19.99 each).</p>' : ""}
     ${e.regular && e.regular < SHIP.freeOver ? `<p class="cart-note">Add ${money(SHIP.freeOver - e.regular)} more for free shipping.</p>` : ""}
-    <p class="cart-note">Taxes calculated at checkout.</p>
+    <p class="cart-note">Secure checkout by Stripe, through our partner <a href="https://rentedlocal.com" target="_blank" rel="noopener">Rented Local</a> — you'll see "Rented Local" on the payment page and your card statement.</p>
     <button class="btn cart-checkout" data-act="checkout">Checkout</button>`;
 }
 
