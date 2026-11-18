@@ -10,10 +10,11 @@ const PRODUCTS = {
   bucket: { name: "Bucket Sauna Hat", price: 2999, shipping: 1999, img: "img/bucket-sauna-hat-1.png" },
   belltop: { name: "Belltop 100% Wool Sauna Hat", price: 2299, shipping: 1999, img: "img/belltop-100-wool-sauna-hat-1.png" },
   merino: { name: "100% Merino Wool Sauna Hat", price: 3999, shipping: 1999, img: "img/100-merino-wool-sauna-hats-1.png" },
-  xmas: { name: "FREE Christmas Hat (Grey Bucket)", price: 0, shipping: 1999, img: "img/bucket-sauna-hat-1.png", xmas: true },
+  embroidered: { name: "Embroidered Bucket Sauna Hat", price: 3200, shipping: 1999, img: "img/embroidered-bucket-sauna-hat-1.jpg" },
+  xmas: { name: "FREE Christmas Hat (Grey Bucket)", price: 0, shipping: 1999, img: "img/free-sauna-hat.jpg", xmas: true },
 };
 /* Sold-out colours: hidden from the cart and unselectable on the shop */
-const SOLD_OUT = { merino: ["Forest", "Royal Blue", "Mustard"] };
+const SOLD_OUT = { merino: ["Forest", "Royal Blue", "Moss", "Mustard", "Natural White"] };
 const SHIP = { xmasMax: 5, freeOver: 7500 }; // free hats always pay their shipping
 
 const ORDER_EMAIL = "saunahatscanada@gmail.com";

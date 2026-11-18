@@ -34,7 +34,7 @@
   "itemListElement": [
     { "@type": "Product", "position": 1, "name": "Bucket Sauna Hat", "brand": "Sauna Hats Canada", "url": "https://saunahatcanada.com/shop.html", "image": "https://saunahatcanada.com/img/bucket-sauna-hat-1.png", "description": "Classic wool bucket sauna hat, one-size adult fit.", "offers": { "@type": "Offer", "price": "29.99", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } },
     { "@type": "Product", "position": 2, "name": "Belltop 100% Wool Sauna Hat", "brand": "Sauna Hats Canada", "url": "https://saunahatcanada.com/shop.html", "image": "https://saunahatcanada.com/img/belltop-100-wool-sauna-hat-1.png", "description": "Deep bell-shaped 100% wool sauna hat with hanging loop.", "offers": { "@type": "Offer", "price": "22.99", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } },
-    { "@type": "Product", "position": 3, "name": "100% Merino Wool Sauna Hat", "brand": "Sauna Hats Canada", "url": "https://saunahatcanada.com/shop.html", "image": "https://saunahatcanada.com/img/100-merino-wool-sauna-hats-1.png", "description": "Seamless merino wool sauna hat in five colours.", "offers": { "@type": "Offer", "price": "39.99", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } }
+    { "@type": "Product", "position": 3, "name": "100% Merino Wool Sauna Hat", "brand": "Sauna Hats Canada", "url": "https://saunahatcanada.com/shop.html", "image": "https://saunahatcanada.com/img/100-merino-wool-sauna-hats-1.png", "description": "Seamless merino wool sauna hat in five colours.", "offers": { "@type": "Offer", "price": "39.99", "priceCurrency": "CAD", "availability": "https://schema.org/OutOfStock" } }
   ]
 }
 </script>
@@ -78,7 +78,7 @@
     </div>
     <div class="free-hat">
       <span class="free-tag">FREE</span>
-      <img src="img/bucket-sauna-hat-1.png" alt="Grey wool bucket sauna hat — the free Christmas hat" width="660" height="620">
+      <img src="img/free-sauna-hat.jpg" alt="Grey wool bucket sauna hat with SAUNA patch — the free Christmas hat" width="800" height="800">
       <div class="free-hat-caption"><strong>Grey Wool Bucket Sauna Hat</strong><span><s>$29.99</s> Free + $19.99 shipping</span></div>
     </div>
   </div>
@@ -102,6 +102,20 @@
           <button class="btn" onclick="buy('bucket')">Add to Cart</button>
         </div>
       </div>
+      <div class="card" data-product="embroidered">
+        <div class="thumb"><span class="badge">New</span><img src="img/embroidered-bucket-sauna-hat-1.jpg" alt="Embroidered grey and white wool bucket sauna hat with red folk band" width="800" height="800"></div>
+        <div class="card-body">
+          <h3>Embroidered Bucket Sauna Hat</h3>
+          <p class="desc">Two-tone felted wool bucket with a hand-finished red and green folk-pattern band. Roomy one-size adult fit, 70&nbsp;cm round, 23&nbsp;cm tall.</p>
+          <div class="swatches">
+            <button class="swatch on" style="background:#8a8a8a" onclick="this.parentNode.querySelectorAll('.swatch').forEach(s=>s.classList.remove('on'));this.classList.add('on');this.closest('.card').querySelector('.thumb img').src='img/embroidered-bucket-sauna-hat-1.jpg'" aria-label="Photo 1"></button>
+            <button class="swatch" style="background:#d9d2c3" onclick="this.parentNode.querySelectorAll('.swatch').forEach(s=>s.classList.remove('on'));this.classList.add('on');this.closest('.card').querySelector('.thumb img').src='img/embroidered-bucket-sauna-hat-2.jpg'" aria-label="Photo 2"></button>
+          </div>
+          <div class="price">$32.00 CAD</div>
+          <div class="ship-note">+ $19.99 shipping · free on orders over $75</div>
+          <button class="btn" onclick="addToCart('embroidered','Embroidered')">Add to Cart</button>
+        </div>
+      </div>
       <div class="card" data-product="belltop">
         <div class="thumb"><span class="badge">Sale</span><img src="img/belltop-100-wool-sauna-hat-1.png" alt="Two-tone wool belltop sauna hat with leaf detail"></div>
         <div class="card-body">
@@ -117,20 +131,20 @@
         </div>
       </div>
       <div class="card" data-product="merino">
-        <div class="thumb"><span class="badge">Low stock</span><img src="img/100-merino-wool-sauna-hats-3.png" alt="Merino wool sauna hat in moss green"></div>
+        <div class="thumb"><span class="badge">Sold out</span><img src="img/100-merino-wool-sauna-hats-3.png" alt="Merino wool sauna hat in moss green"></div>
         <div class="card-body">
           <h3>100% Merino Wool</h3>
-          <p class="desc">Seamless, 100% merino — the enthusiast's hat. Forest, Royal Blue and Mustard are sold out — Moss and Natural White left.</p>
+          <p class="desc">Seamless, 100% merino — the enthusiast's hat. Sold out for now — check back soon, or grab a classic Bucket or Belltop.</p>
           <div class="swatches">
             <button class="swatch soldout" style="background:#5a7a4a" data-name="Forest" disabled title="Sold out" data-img="img/100-merino-wool-sauna-hats-1.png" aria-label="Forest green"></button>
             <button class="swatch soldout" style="background:#2e3f9e" data-name="Royal Blue" disabled title="Sold out" data-img="img/100-merino-wool-sauna-hats-2.png" aria-label="Royal blue"></button>
-            <button class="swatch on" style="background:#7fae52" data-name="Moss" data-img="img/100-merino-wool-sauna-hats-3.png" aria-label="Moss green"></button>
+            <button class="swatch soldout" style="background:#7fae52" data-name="Moss" data-img="img/100-merino-wool-sauna-hats-3.png" aria-label="Moss green"></button>
             <button class="swatch soldout" style="background:#d8a62e" data-name="Mustard" disabled title="Sold out" data-img="img/100-merino-wool-sauna-hats-4.png" aria-label="Mustard yellow"></button>
-            <button class="swatch" style="background:#f3efe4" data-name="Natural White" data-img="img/100-merino-wool-sauna-hats-5.png" aria-label="Natural white"></button>
+            <button class="swatch soldout" style="background:#f3efe4" data-name="Natural White" disabled title="Sold out" data-img="img/100-merino-wool-sauna-hats-5.png" aria-label="Natural white"></button>
           </div>
           <div class="price">$39.99 CAD <span style="font-size:.8rem;color:#8d8271;font-weight:400">· <span data-color-for="merino">Moss</span></span></div>
           <div class="ship-note">+ $19.99 shipping · free on orders over $75</div>
-          <button class="btn" onclick="buy('merino')">Add to Cart</button>
+          <button class="btn" disabled style="opacity:.5;cursor:not-allowed">Sold out</button>
         </div>
       </div>
     </div>
