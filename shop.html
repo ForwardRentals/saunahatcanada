@@ -16,8 +16,8 @@
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    { "@type": "Product", "position": 1, "name": "Bucket Sauna Hat", "image": "https://saunahatcanada.com/img/bucket-sauna-hat-1.png", "description": "Classic wool bucket sauna hat, one-size adult fit.", "offers": { "@type": "Offer", "price": "29.99", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } },
-    { "@type": "Product", "position": 2, "name": "Belltop 100% Wool Sauna Hat", "image": "https://saunahatcanada.com/img/belltop-100-wool-sauna-hat-1.png", "description": "Deep bell-shaped 100% wool sauna hat with hanging loop.", "offers": { "@type": "Offer", "price": "22.99", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } },
+    { "@type": "Product", "position": 1, "name": "Bucket Sauna Hat", "image": "https://saunahatcanada.com/img/free-sauna-hat.jpg", "description": "Classic wool bucket sauna hat, one-size adult fit.", "offers": { "@type": "Offer", "price": "29.99", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } },
+    { "@type": "Product", "position": 2, "name": "Belltop 100% Wool Sauna Hat", "image": "https://saunahatcanada.com/img/belltop-100-wool-sauna-hat-1.png", "description": "Deep bell-shaped 100% wool sauna hat with hanging loop.", "offers": { "@type": "Offer", "price": "22.99", "priceCurrency": "CAD", "availability": "https://schema.org/OutOfStock" } },
     { "@type": "Product", "position": 3, "name": "100% Merino Wool Sauna Hat", "image": "https://saunahatcanada.com/img/100-merino-wool-sauna-hats-1.png", "description": "Seamless merino wool sauna hat in five colours.", "offers": { "@type": "Offer", "price": "39.99", "priceCurrency": "CAD", "availability": "https://schema.org/OutOfStock" } }
   ]
 }
@@ -53,7 +53,7 @@
   <div class="wrap">
     <div class="grid">
       <div class="card" data-product="bucket">
-        <div class="thumb"><span class="badge best">Classic</span><img src="img/bucket-sauna-hat-1.png" alt="Grey wool bucket sauna hat with dimensions 55-60cm circumference"></div>
+        <div class="thumb"><span class="badge best">Classic</span><img src="img/free-sauna-hat.jpg" alt="Grey wool bucket sauna hat with SAUNA patch"></div>
         <div class="card-body">
           <h3>Bucket Sauna Hat</h3>
           <p class="desc">Our bucket sauna hats are a classic fit for the sauna user. Brimmed to shade eyes and ears, felted thick for serious insulation. Fits 55–60&nbsp;cm.</p>
@@ -77,17 +77,18 @@
         </div>
       </div>
       <div class="card" data-product="belltop">
-        <div class="thumb"><span class="badge">Sale — save $7</span><img src="img/belltop-100-wool-sauna-hat-1.png" alt="Charcoal and white wool belltop sauna hat with green leaf detail"></div>
+        <div class="thumb"><span class="badge">Sold out</span><img src="img/belltop-100-wool-sauna-hat-1.png" alt="Charcoal and white wool belltop sauna hat with green leaf detail"></div>
         <div class="card-body">
           <h3>Belltop 100% Wool Sauna Hat</h3>
+          <p class="desc" style="color:#a0442c"><b>Sold out for now — check back soon.</b></p>
           <p class="desc">Our bell-top is a fan favourite among sauna enthusiasts. Deep coverage over the ears, stitched felt panels, and a loop to hang it by the door.</p>
           <div class="swatches">
-            <button class="swatch on" style="background:#3a3a38" data-name="Charcoal Leaf" data-img="img/belltop-100-wool-sauna-hat-1.png" aria-label="Charcoal with leaf"></button>
-            <button class="swatch" style="background:#b9b3a6" data-name="Stone" data-img="img/belltop-100-wool-sauna-hat-2.png" aria-label="Stone two-tone"></button>
+            <button class="swatch soldout" disabled title="Sold out" style="background:#3a3a38" data-name="Charcoal Leaf" data-img="img/belltop-100-wool-sauna-hat-1.png" aria-label="Charcoal with leaf"></button>
+            <button class="swatch soldout" disabled title="Sold out" style="background:#b9b3a6" data-name="Stone" data-img="img/belltop-100-wool-sauna-hat-2.png" aria-label="Stone two-tone"></button>
           </div>
           <div class="price"><s>$29.99</s><span class="sale">$22.99 CAD</span> <span style="font-size:.8rem;color:#8d8271;font-weight:400">· <span data-color-for="belltop">Charcoal Leaf</span></span></div>
           <div class="ship-note">+ $19.99 shipping · free on orders over $75</div>
-          <button class="btn" onclick="buy('belltop')">Add to Cart</button>
+          <button class="btn" disabled style="opacity:.5;cursor:not-allowed">Sold out</button>
         </div>
       </div>
       <div class="card" data-product="merino">
