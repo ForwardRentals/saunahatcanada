@@ -130,6 +130,8 @@ section { padding: 72px 0; }
   transition: transform .12s, border-color .12s;
 }
 .swatch:hover { transform: scale(1.15); }
+.swatch.soldout { opacity: .35; cursor: not-allowed; position: relative; background-image: linear-gradient(135deg, transparent 45%, rgba(43,36,25,.7) 46%, rgba(43,36,25,.7) 54%, transparent 55%); }
+.swatch.soldout:hover { transform: none; }
 .swatch.on { border-color: var(--char); transform: scale(1.12); }
 
 /* Feature rows */

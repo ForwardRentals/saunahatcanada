@@ -12,6 +12,8 @@ const PRODUCTS = {
   merino: { name: "100% Merino Wool Sauna Hat", price: 3999, shipping: 1999, img: "img/100-merino-wool-sauna-hats-1.png" },
   xmas: { name: "FREE Christmas Hat (Grey Bucket)", price: 0, shipping: 1999, img: "img/bucket-sauna-hat-1.png", xmas: true },
 };
+/* Sold-out colours: hidden from the cart and unselectable on the shop */
+const SOLD_OUT = { merino: ["Forest", "Royal Blue", "Mustard"] };
 const SHIP = { xmasMax: 5, freeOver: 7500 }; // free hats always pay their shipping
 
 const ORDER_EMAIL = "saunahatscanada@gmail.com";
@@ -22,7 +24,7 @@ const money = (c) => "$" + (c / 100).toFixed(2);
 function loadCart() {
   try {
     const c = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
-    return Array.isArray(c) ? c.filter((l) => PRODUCTS[l.id]) : [];
+    return Array.isArray(c) ? c.filter((l) => PRODUCTS[l.id] && !(SOLD_OUT[l.id] || []).includes(l.color)) : [];
   } catch {
     return [];
   }
@@ -216,7 +218,7 @@ function emailOrder(cart) {
 /* Colour swatch switching (merino + belltop) */
 document.addEventListener("click", (e) => {
   const sw = e.target.closest(".swatch");
-  if (!sw) return;
+  if (!sw || sw.disabled) return;
   const wrap = sw.closest("[data-product]");
   if (!wrap) return;
   wrap.querySelectorAll(".swatch").forEach((s) => s.classList.remove("on"));
